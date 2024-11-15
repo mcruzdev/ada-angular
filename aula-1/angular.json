@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "aula-1": {
+    "ada-angular": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/aula-1",
+            "outputPath": "dist/ada-angular",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -64,10 +64,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "aula-1:build:production"
+              "buildTarget": "ada-angular:build:production"
             },
             "development": {
-              "buildTarget": "aula-1:build:development"
+              "buildTarget": "ada-angular:build:development"
             }
           },
           "defaultConfiguration": "development"

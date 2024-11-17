@@ -4,7 +4,7 @@
 
 ## Aula 1
 
-Você pode ver o projeto da aula 1 [aqui](/aula-1/).
+Você pode ver o projeto da aula 1 [aqui](/aula-1/README.md).
 
 Na aula 1 vimos:
 

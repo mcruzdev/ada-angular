@@ -18,6 +18,16 @@ Na aula 1 vimos:
 - O que é first-match wins strategy
 - Como adicionar uma página 404 com o `**` wildcard
 
+### Slides
+
+
+- [Aula 1](https://docs.google.com/presentation/d/1cgUsFtcmQ340kZFajX7wG2zW4rc6NkZlpG2Ivact998/edit?usp=sharing)
+
+### Referências
+
+- [Router tutorial](https://angular.dev/guide/routing/router-tutorial)
+- [Angular Route](https://angular.dev/guide/routing/common-router-tasks)
+
 ## Aula 2
 
 Na [aula 2](/aula-2/README.md) vimos:
@@ -36,6 +46,9 @@ Na [aula 2](/aula-2/README.md) vimos:
 - O que é e como utilizar o `effect`
 - Como instalar e utilizar o `@ng-icons` em uma aplicação Angular
 
+### Slides
+
+- [Aula 2](https://docs.google.com/presentation/d/1eb8r41_1Ei_lI9b0MoM-2uxlFpvWxUNcCTXxDHJXaRE/edit?usp=sharing)
 
 ### Referências
 

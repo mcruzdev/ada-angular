@@ -1,3 +1,4 @@
+<p class="title">Using *ngIf</p>
 <div class="card">
     <div class="info">
         <div>{{ account.name }}</div>
@@ -14,5 +15,29 @@
         <ng-template #balanceNotVisible>
             ******
         </ng-template>
+    </div>
+</div>
+
+
+<p class="title">Using &#64;if</p>
+<div class="card">
+    <div class="info">
+        <div>{{ account.name }}</div>
+        <div>
+            <button class="button" (click)="visible = !visible">
+                @if (visible) {
+                <ng-icon class="icon" name="heroEyeSlash"></ng-icon>
+                } @else {
+                <ng-icon class="icon" name="heroEye"></ng-icon>
+                }
+            </button>
+        </div>
+    </div>
+    <div class="balance">
+        @if (visible) {
+            <div>{{ account.balance | number: '1.2-2'}}</div>
+        } @else {
+            <div>******</div>
+        }
     </div>
 </div>

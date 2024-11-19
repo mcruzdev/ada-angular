@@ -1,5 +1,9 @@
 @import '../../../variables.scss';
 
+.title {
+    margin: 12px 0px;
+}
+
 .card {
     display: flex;
     flex-direction: column;
@@ -7,6 +11,7 @@
     width: 400px;
     background-color: $slateGray;
     border-radius: 8px;
+    padding: 12px;
 
     .info {
         display: flex;

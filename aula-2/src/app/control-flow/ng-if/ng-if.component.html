@@ -1,0 +1,18 @@
+<div class="card">
+    <div class="info">
+        <div>{{ account.name }}</div>
+        <div><button class="button" (click)="visible = !visible"><ng-icon name="heroEyeSlash"
+                    *ngIf="visible; else notVisible"></ng-icon>
+                <ng-template #notVisible>
+                    <ng-icon class="icon" name="heroEye"></ng-icon>
+                </ng-template>
+
+            </button></div>
+    </div>
+    <div class="balance">
+        <div *ngIf="visible; else balanceNotVisible">{{ account.balance | number: '1.2-2'}}</div>
+        <ng-template #balanceNotVisible>
+            ******
+        </ng-template>
+    </div>
+</div>

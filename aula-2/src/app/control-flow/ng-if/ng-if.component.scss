@@ -1,0 +1,21 @@
+@import '../../../variables.scss';
+
+.card {
+    display: flex;
+    flex-direction: column;
+    height: 200px;
+    width: 400px;
+    background-color: $slateGray;
+    border-radius: 8px;
+
+    .info {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 12px;
+    }
+
+    .balance {
+        padding: 12px;
+    }
+}

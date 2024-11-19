@@ -20,7 +20,7 @@ Na aula 1 vimos:
 
 ## Aula 2
 
-Na aula 2 vimos:
+Na [aula 2](/aula-2/README.md) vimos:
 
 - O que é Control Flow
 - Como usar o `@if`, `@else-if` e `@else`

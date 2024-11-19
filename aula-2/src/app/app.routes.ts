@@ -2,7 +2,7 @@ import { Routes } from "@angular/router";
 import { HomeComponent } from "./home/home.component";
 import { LoginComponent } from "./login/login.component";
 import { ListEventsComponent } from "./home/list-events/list-events.component";
-import { CreateEventComponent } from "./home/create-event/create-event.component";
+import { SimuladorComponent } from "./home/simulador/simulador.component";
 import { NotFoundComponent } from "./not-found/not-found.component";
 import { EventDetailsComponent } from "./home/event-details/event-details.component";
 import { ControlFlowComponent } from "./control-flow/control-flow.component";
@@ -30,7 +30,7 @@ export const routes: Routes = [
       },
       {
         path: "create-event",
-        component: CreateEventComponent,
+        component: SimuladorComponent,
       },
       {
         path: "events/:eventId/details",

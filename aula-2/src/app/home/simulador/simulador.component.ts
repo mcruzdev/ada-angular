@@ -1,68 +1,72 @@
-import { Component, computed, effect, OnDestroy, Signal, signal, untracked, WritableSignal } from '@angular/core';
-import { NgIconComponent, provideIcons } from '@ng-icons/core';
-import { heroArrowTrendingUp } from '@ng-icons/heroicons/outline';
-
+import {
+  Component,
+  computed,
+  effect,
+  OnDestroy,
+  Signal,
+  signal,
+  untracked,
+  WritableSignal,
+} from "@angular/core";
+import { NgIconComponent, provideIcons } from "@ng-icons/core";
+import { heroArrowTrendingUp } from "@ng-icons/heroicons/outline";
 
 @Component({
-  selector: 'app-create-event',
+  selector: "app-simulador",
   standalone: true,
   imports: [NgIconComponent],
-  templateUrl: './create-event.component.html',
-  styleUrl: './create-event.component.scss',
-  viewProviders: [provideIcons(
-    {heroArrowTrendingUp}
-  )]
+  templateUrl: "./simulador.component.html",
+  styleUrl: "./simulador.component.scss",
+  viewProviders: [provideIcons({ heroArrowTrendingUp })],
 })
-export class CreateEventComponent implements OnDestroy {
+export class SimuladorComponent implements OnDestroy {
   evento: Evento = {
-    nome: 'TDC',
-    custo: 100.00,
-    preco: 199.00
-  }
+    nome: "TDC",
+    custo: 100.0,
+    preco: 199.0,
+  };
 
-
-  constructor() {
-  }
+  constructor() {}
 
   effectRef = effect((onCleanup) => {
-    console.log(`Novo valor da quantidade ${this.quantidade()}`)
+    console.log(`Novo valor da quantidade ${this.quantidade()}`);
 
     onCleanup(() => {
-      console.log(`...`)
-    })
-  })
+      console.log(`Limpando...`);
+    });
+  });
 
   ngOnDestroy(): void {
-    this.effectRef.destroy()
+    this.effectRef.destroy();
   }
 
-  quantidade: WritableSignal<number> = signal(0) //caixinha, wrapper
+  quantidade: WritableSignal<number> = signal(0); //caixinha, wrapper
 
-  // lucro... depends 
-  lucro: Signal<number> = computed(() => { // quando eu preciso derivar de um signal existente
-    console.log('primeira vez')
-    return (untracked<number>(this.quantidade) * this.evento.preco) - this.evento.custo;
+  
+  lucro: Signal<number> = computed(() => {
+    console.log("Executando pela primeira vez");
+    return (
+      untracked<number>(this.quantidade) * this.evento.preco - this.evento.custo
+    );
   });
 
   inc() {
-    const quantidadeAtual: number = this.quantidade()
-    this.quantidade.set(quantidadeAtual + 1)
-  }
- 
-  dim() {
-    this.quantidade.update( (quantidadeAtual) => {
-      return quantidadeAtual - 1;
-    })
+    const quantidadeAtual: number = this.quantidade();
+    this.quantidade.set(quantidadeAtual + 1);
   }
 
+  dim() {
+    this.quantidade.update((quantidadeAtual) => {
+      return quantidadeAtual - 1;
+    });
+  }
 }
 
 interface Evento {
-  nome: string
-  custo: number
-  preco: number
+  nome: string;
+  custo: number;
+  preco: number;
 }
-
 
 // let a = 10
 // let b = 20
@@ -72,8 +76,7 @@ interface Evento {
 // a = 20
 // z = a + b
 
-// console.log(z) // 
-
+// console.log(z) //
 
 // 1. usando imperativa e nao usando reativo
 // quantidade: number = 0
@@ -94,22 +97,20 @@ interface Evento {
 //   this.lucro = atual - this.evento.custo;
 // }
 
-
-
 // 2. reativa e usando rxjs declarativo
 
 // constructor() {
 //   this.quantidadeSubject.asObservable().subscribe((novoValor) => {
 //     console.log('>>>', novoValor)
 //   });
-  
+
 // }
 
 // private quantidadeSubject = new BehaviorSubject(0);
 
 // quantidade$ = this.quantidadeSubject.asObservable();
 
-// lucro$ = this.quantidadeSubject.pipe( // eu vou realizar algumas operacoes 
+// lucro$ = this.quantidadeSubject.pipe( // eu vou realizar algumas operacoes
 //   map((novaQuantidade) => { // operador map do rxjs (lib reativa)
 //   return (novaQuantidade * this.evento.preco) - this.evento.custo;
 // }))

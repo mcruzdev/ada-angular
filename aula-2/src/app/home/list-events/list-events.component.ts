@@ -1,11 +1,11 @@
-
+import { CommonModule, NgFor } from "@angular/common";
 import { Component } from "@angular/core";
 import { RouterLink } from "@angular/router";
 
 @Component({
   selector: "app-list-events",
   standalone: true,
-  imports: [RouterLink],
+  imports: [NgFor, RouterLink],
   templateUrl: "./list-events.component.html",
   styleUrl: "./list-events.component.scss",
 })

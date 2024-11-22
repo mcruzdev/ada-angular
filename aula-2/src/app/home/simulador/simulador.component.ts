@@ -44,9 +44,7 @@ export class SimuladorComponent implements OnDestroy {
 
   lucro: Signal<number> = computed(() => {
     console.log("Executando pela primeira vez");
-    return (
-      untracked<number>(this.quantidade) * this.evento.preco - this.evento.custo
-    );
+    return this.quantidade() * this.evento.preco - this.evento.custo;
   });
 
   inc() {

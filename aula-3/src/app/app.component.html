@@ -1,0 +1,17 @@
+<nav class="navbar">
+  <div class="nav-buttons">
+    <a class="button" [routerLink]="['/home']" routerLinkActive="activated">Home</a>
+  <a class="button" (click)="navigate('/login')" routerLinkActive="activated">Login</a>
+  <a class="button" [routerLink]="['/control-flow']">Control Flow</a>
+  <a class="button" [routerLink]="['/notificador']">Notificador</a>
+  </div>
+  <div class="nav-alert" >
+    {{ notificacoes() }}
+        <ng-icon name="heroBellAlert"></ng-icon>
+  </div>
+
+</nav>
+
+<div class="main">
+  <router-outlet />
+</div>

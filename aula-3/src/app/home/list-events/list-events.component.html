@@ -1,9 +1,9 @@
 <div class="events-container">
 
-    @for (e of events; track e.id) {
+    @for (e of evts(); track e.id) {
     <div class="event">
         <a>Name: {{e.name}}</a>
-
+        
         <p>Click <a [routerLink]="['/home/events/', e.id, 'details' ]">here</a>, for more details...</p>
     </div>
     }

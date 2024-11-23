@@ -4,7 +4,7 @@ import { LocalStorageService } from './local-storage.service';
 @Injectable({
   providedIn: 'root'
 })
-export class NotificadorService {
+export class NotificadorService {//  application programming interface
 
   localStorageService = inject(LocalStorageService)
 

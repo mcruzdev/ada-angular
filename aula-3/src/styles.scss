@@ -1,0 +1,93 @@
+@import 'ngx-toastr/toastr';
+
+
+// colors https://coolors.co/a9ddd6-7a8b99-91adc2-9ba0bc-c1b8c8
+
+$slateGray: #7A8B99;
+$tiffanyBlue: #A9DDD6;
+$coolGray: #9BA0BC;
+$white: #FFFFFF;
+$black: #000000;
+
+html,
+body {
+    margin: 0;
+    box-sizing: border-box;
+    height: 100vh;
+    font-family: sans-serif;
+}
+
+
+.main {
+    padding: 12px;
+}
+
+.button {
+    background-color: $tiffanyBlue;
+    padding: 4px;
+    text-decoration: none;
+    width: 60px;
+    text-align: center;
+    color: $black;
+    border-radius: 4px;
+    cursor: pointer;
+
+    &:hover {
+        background-color: darken($color: $tiffanyBlue, $amount: 40%);
+        color: $white;
+    }
+}
+
+
+.activated {
+    background-color: darken($color: $tiffanyBlue, $amount: 40%);
+    color: $white;
+
+}
+
+
+.navbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    padding: 12px;
+    background-color: $slateGray;
+    gap: 8px;
+}
+
+.home-navbar {
+    gap: 8px;
+    display: flex;
+}
+
+.message-404 {
+    font-size: 60px;
+}
+
+.message-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.events-container {
+    display: flex;
+    flex-direction: column;
+    border-radius: 8px;
+    gap: 16px;
+    padding: 12px 0px;
+
+    .event {
+        display: flex;
+        flex-direction: column;
+        background-color: $coolGray;
+        border-radius: 8px;
+        padding: 12px;
+        height: 60px;
+    }
+}
+
+.icon {
+    font-size: 16px;
+}

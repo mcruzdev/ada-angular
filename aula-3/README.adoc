@@ -1,0 +1,113 @@
+= Aula 3
+
+Nessa aula vimos como podemos utilizar Services para possuir a responsabilidade que os nossos componentes não devem ter.
+
+Vimos como posso compartilhar estados entre componentes que não são parentes diretos, em outras palavras, componentes que não conseguem se comunicar via `@Input` ou `@Output`.
+
+
+== Utilizando Service para compartilhar estado
+
+[source,ts]
+.notificador.service.ts
+----
+import { effect, inject, Injectable, signal } from '@angular/core';
+import { LocalStorageService } from './local-storage.service';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class NotificadorService {
+
+  localStorageService = inject(LocalStorageService) <1>
+
+  notificacoes = signal(+this.localStorageService.get('notificacoes') || 0) <2>
+
+  effectRef = effect(() => {
+    this.localStorageService.set('notificacoes', this.notificacoes().toString())
+  }); <3>
+
+  aumentarNotificacao() {
+    this.notificacoes.update(function (valorAtual) { <4>
+      return valorAtual + 1
+    })
+  }
+}
+----
+
+<1> Estamos injetando o LocalStorageService essa nova forma de utilizar a injeção de dependência do Angular foi introduzida no Angular 14.
+
+<2> Estamos pegando o valor das notificões de dentro do nosso local storage através do `LocalStorageService` e criando um signal através do valor retornado.
+
+<3> Estamos dizendo que queremos reagir (através do `effect`) a todas as alterações do signal `notificacoes`
+
+<4> Estamos atualizando o nosso signal `notificacoes`
+
+
+== Utilizando o Service
+
+[source,ts]
+.app.component.ts
+----
+import { Component, computed, signal } from '@angular/core';
+import {
+  Router,
+  RouterLink,
+  RouterLinkActive,
+  RouterOutlet,
+} from '@angular/router';
+import { NgIconComponent, provideIcons } from '@ng-icons/core';
+import { heroBellAlert } from '@ng-icons/heroicons/outline'
+import { NotificadorService } from './services/notificador.service';
+import { LocalStorageService } from './services/local-storage.service';
+
+@Component({
+  selector: 'app-root',
+  standalone: true,
+  imports: [RouterOutlet, RouterLink, RouterLinkActive, NgIconComponent],
+  templateUrl: './app.component.html',
+  styleUrl: './app.component.scss',
+  viewProviders: [provideIcons({
+    heroBellAlert
+  })]
+})
+export class AppComponent {
+  title = 'ada-angular';
+
+  constructor(private readonly router: Router, private readonly notificadorService: NotificadorService) { } <1>
+
+  notificacoes = computed(() => this.notificadorService.notificacoes()) <2>
+
+
+  navigate(path: string) {
+    this.router.navigate([path]);
+  }
+}
+----
+
+<1> Estamos injetando o NotificadorService através da DI (Dependency Injection) do Angular.
+<2> Estamos criando um `signal` a partir de um outro `signal`, nesse caso, estamos criando um `signal` a partir
+do `signal` `notificacoes` que está dentro de `NotificadorService`.
+
+=== HTML
+[source,html]
+----
+<nav class="navbar">
+  <div class="nav-buttons">
+    <a class="button" [routerLink]="['/home']" routerLinkActive="activated">Home</a>
+  <a class="button" (click)="navigate('/login')" routerLinkActive="activated">Login</a>
+  <a class="button" [routerLink]="['/control-flow']">Control Flow</a>
+  <a class="button" [routerLink]="['/notificador']">Notificador</a>
+  </div>
+  <div class="nav-alert" >
+    {{ notificacoes() }} <1>
+        <ng-icon name="heroBellAlert"></ng-icon>
+  </div>
+
+</nav>
+
+<div class="main">
+  <router-outlet />
+</div>
+----
+
+<1> Utilizando o `signal` no nosso HTML.

@@ -60,7 +60,7 @@ Na [aula 2](/aula-2/README.md) vimos:
 
 ## Aula 3
 
-Na [aula 2](/aula-2/README.md) vimos:
+Na [aula 2](/aula-3/README.md) vimos:
 
 - O que é um service
 - A importância de definirmos e darmos a responsabilidade para cada componente do nosso software
@@ -81,3 +81,26 @@ Na [aula 2](/aula-2/README.md) vimos:
 - [Biblioteca ngx-toastr](https://github.com/scttcper/ngx-toastr)
 - [Modelo de Maturidade de Richardson](https://martinfowler.com/articles/richardsonMaturityModel.html)
 - [Dissertação Roy Fielding Capítulo 5 (REST)](https://ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm)
+
+
+## Aula 4
+
+Na [aula 2](/aula-4/README.md) vimos:
+
+- O que é o protocolo HTTP
+- O que são e como utilizar verbos HTTP
+- Diferença entre PATCH e POST
+- O que são e como utilizar cabeçalhos HTTP
+- O que são e como utilizar de forma adequada HTTP response status code
+- Fizemos um simples aplicação to-do onde criamos, atualizamos parcialmente e listamos tarefas
+- Descobrimos que consigo passar função como argumento e também criar um array de funções
+
+### Slides
+
+Não possui slides
+
+### Referências
+
+- [MDN Web Docs HTTP](https://developer.mozilla.org/en-US/docs/Web/HTTP)
+- [MDN Web Docs HTTP Methods](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods)
+- [MDN Web Docs HTTP Status](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status)

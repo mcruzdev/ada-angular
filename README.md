@@ -58,5 +58,26 @@ Na [aula 2](/aula-2/README.md) vimos:
 - [Angular Signals](https://blog.angular-university.io/angular-signals/)
 
 
+## Aula 3
+
+Na [aula 2](/aula-2/README.md) vimos:
+
+- O que é um service
+- A importância de definirmos e darmos a responsabilidade para cada componente do nosso software
+- Quais são as responsabilidades de um Service e as responsabilidades de um componente
+- O que é injeção de dependências e como ela é útil para remover a responsabilidade de criar dependências externas
+- Casos de uso de um Service
+- Tivemos uma introdução ao REST e quais são os seus 5 princípios
+- Como medir a maturidade da sua API REST através do modelo de maturidade de Richardson
+- Fizemos uso da biblioteca https://github.com/scttcper/ngx-toastr
 
 
+### Slides
+
+- [Aula 3](https://docs.google.com/presentation/d/1MXWZcyZfVqwC0jp40hIeboQIdBSveUveaNdQE2KB7qE/edit?usp=sharing)
+
+### Referências
+
+- [Biblioteca ngx-toastr](https://github.com/scttcper/ngx-toastr)
+- [Modelo de Maturidade de Richardson](https://martinfowler.com/articles/richardsonMaturityModel.html)
+- [Dissertação Roy Fielding Capítulo 5 (REST)](https://ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm)

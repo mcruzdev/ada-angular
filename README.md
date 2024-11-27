@@ -60,7 +60,7 @@ Na [aula 2](/aula-2/README.md) vimos:
 
 ## Aula 3
 
-Na [aula 2](/aula-3/README.md) vimos:
+Na [aula 3](/aula-3/README.adoc) vimos:
 
 - O que é um service
 - A importância de definirmos e darmos a responsabilidade para cada componente do nosso software
@@ -85,7 +85,7 @@ Na [aula 2](/aula-3/README.md) vimos:
 
 ## Aula 4
 
-Na [aula 2](/aula-4/README.md) vimos:
+Na [aula 4](/aula-4/README.adoc) vimos:
 
 - O que é o protocolo HTTP
 - O que são e como utilizar verbos HTTP

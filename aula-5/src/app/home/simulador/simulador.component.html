@@ -1,0 +1,10 @@
+<div>
+  <h1>Simulador de lucro</h1>
+  <p>Custo: {{ evento.custo }}</p>
+  <p>Nome: {{ evento.nome }}</p>
+  <p>Lucro: {{ lucro() }}</p>
+
+  <button class="button" (click)="dim()">-</button>
+  <p>Pessoas: {{ quantidade()}}</p>
+  <button class="button" (click)="inc()">+</button>
+</div>

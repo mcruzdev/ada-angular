@@ -1,0 +1,14 @@
+.nav-buttons {
+    flex: 1;
+    gap: 12px;
+    display: flex;
+}
+
+.nav-alert {
+    display: flex;
+    align-items: center;
+
+    ng-icon {
+        font-size: 20px;
+    }
+}

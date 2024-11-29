@@ -1,4 +1,4 @@
-import { Component, computed } from "@angular/core";
+import { Component, computed, inject } from "@angular/core";
 import {
   Router,
   RouterLink,
@@ -8,6 +8,7 @@ import {
 import { NgIconComponent, provideIcons } from "@ng-icons/core";
 import { heroBellAlert } from "@ng-icons/heroicons/outline";
 import { NotificadorService } from "./services/notificador.service";
+import { AuthService } from "./services/auth/auth.service";
 
 @Component({
   selector: "app-root",
@@ -29,9 +30,16 @@ export class AppComponent {
     private readonly notificadorService: NotificadorService
   ) {}
 
+  authService: AuthService = inject(AuthService);
+
   notificacoes = computed(() => this.notificadorService.notificacoes());
 
-  // notificacoes = signal(0)
+  profileImage = this.authService.identityClaims
+    ? this.authService.identityClaims["picture"]
+    : "";
+  profileName = this.authService.identityClaims
+    ? this.authService.identityClaims["name"]
+    : "";
 
   navigate(path: string) {
     this.router.navigate([path]);

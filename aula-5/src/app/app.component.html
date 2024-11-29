@@ -1,16 +1,20 @@
 <nav class="navbar">
   <div class="nav-buttons">
     <a class="button" [routerLink]="['/home']" routerLinkActive="activated">Home</a>
-  <a class="button" [routerLink]="['/login']" routerLinkActive="activated">Login</a>
-  <a class="button" [routerLink]="['/control-flow']">Control Flow</a>
-  <a class="button" [routerLink]="['/notificador']">Notificador</a>
-  <a class="button" [routerLink]="['/todo']">ToDo</a>
+    <a class="button" [routerLink]="['/login']" routerLinkActive="activated">Login</a>
+    <a class="button" [routerLink]="['/control-flow']">Control Flow</a>
+    <a class="button" [routerLink]="['/notificador']">Notificador</a>
+    <a class="button" [routerLink]="['/todo']">ToDo</a>
   </div>
-  <div class="nav-alert" >
-    {{ notificacoes() }}
-        <ng-icon name="heroBellAlert"></ng-icon>
+  <div class="nav-info">
+    <span class="notifications">
+      {{ notificacoes() }}
+      <ng-icon name="heroBellAlert"></ng-icon>
+    </span>
+    <div class="profile-card">
+      <img [src]="profileImage" class="image">
+    </div>
   </div>
-
 </nav>
 
 <div class="main">

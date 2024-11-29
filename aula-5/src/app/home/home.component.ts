@@ -1,6 +1,5 @@
-import { Component, inject, signal } from "@angular/core";
+import { Component } from "@angular/core";
 import { RouterLink, RouterOutlet } from "@angular/router";
-import { AuthService } from "../services/auth/auth.service";
 import { JsonPipe } from "@angular/common";
 
 @Component({
@@ -10,9 +9,4 @@ import { JsonPipe } from "@angular/common";
   templateUrl: "./home.component.html",
   styleUrl: "./home.component.scss",
 })
-export class HomeComponent {
-  oauth2 = inject(AuthService);
-
-  profileImage = this.oauth2.identityClaims["picture"];
-  profileName = this.oauth2.identityClaims["name"];
-}
+export class HomeComponent {}

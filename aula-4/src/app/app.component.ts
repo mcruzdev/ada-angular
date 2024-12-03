@@ -1,31 +1,35 @@
-import { Component, computed, signal } from '@angular/core';
+import { Component, computed } from "@angular/core";
 import {
   Router,
   RouterLink,
   RouterLinkActive,
   RouterOutlet,
-} from '@angular/router';
-import { NgIconComponent, provideIcons } from '@ng-icons/core';
-import { heroBellAlert } from '@ng-icons/heroicons/outline'
-import { NotificadorService } from './services/notificador.service';
-import { LocalStorageService } from './services/local-storage.service';
+} from "@angular/router";
+import { NgIconComponent, provideIcons } from "@ng-icons/core";
+import { heroBellAlert } from "@ng-icons/heroicons/outline";
+import { NotificadorService } from "./services/notificador.service";
 
 @Component({
-  selector: 'app-root',
+  selector: "app-root",
   standalone: true,
   imports: [RouterOutlet, RouterLink, RouterLinkActive, NgIconComponent],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss',
-  viewProviders: [provideIcons({
-    heroBellAlert
-  })]
+  templateUrl: "./app.component.html",
+  styleUrl: "./app.component.scss",
+  viewProviders: [
+    provideIcons({
+      heroBellAlert,
+    }),
+  ],
 })
 export class AppComponent {
-  title = 'ada-angular';
+  title = "ada-angular";
 
-  constructor(private readonly router: Router, private readonly notificadorService: NotificadorService) { }
+  constructor(
+    private readonly router: Router,
+    private readonly notificadorService: NotificadorService
+  ) {}
 
-  notificacoes = computed(() => this.notificadorService.notificacoes())
+  notificacoes = computed(() => this.notificadorService.notificacoes());
 
   // notificacoes = signal(0)
 

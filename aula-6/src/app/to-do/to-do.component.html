@@ -1,0 +1,16 @@
+<!-- form -->
+<div class="to-do-container">
+    <form [formGroup]="tarefaForm" class="form" (ngSubmit)="onSubmit()">
+        <label for="title">Título</label>
+        <input id="title" type="text" formControlName="title">
+        <button class="button">Adicionar tarefa</button>
+    </form>
+</div>
+
+<!-- lista -->
+@for (tarefa of tarefas; track tarefa.id) {
+<div style="border: 1px solid black;">
+    <p>{{ tarefa.title}}: completed {{tarefa.completed}}</p>
+    <button class="button" (click)="toggleTarefa(tarefa.id)">Mudar status</button>
+</div>
+}

@@ -1,0 +1,167 @@
+= Aula 4
+
+[source,ts]
+.to-do.service.ts
+----
+import { HttpClient } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { LocalStorageService } from "../services/local-storage.service";
+import { Tarefa } from "./to-do.component";
+import { catchError, of } from "rxjs";
+import { ToastrService } from "ngx-toastr";
+
+@Injectable({
+  providedIn: "root",
+})
+export class ToDoService {
+  constructor(
+    private readonly httpClient: HttpClient,
+    private readonly localStorage: LocalStorageService,
+    private readonly toastr: ToastrService
+  ) {} <1>
+
+  criarTarefa({ title }: { title: string }) {
+    const token = this.localStorage.get("token"); // estamos buscando o token no através do LocalStorageService.
+    return this.httpClient
+      .post<Tarefa>(
+        "http://localhost:3000/to-do", // url
+        {
+          title, // corpo da requisição
+        },
+        {
+          headers: { // adicionando um header x-api-key com o token como valor
+            "x-api-key": token, 
+          },
+        }
+      )
+      .pipe( <2> 
+        catchError((err) => { <3>
+          if (err.status == 0) {
+            this.toastr.error("Connection failed");
+          }
+
+          if (err.status >= 400 && err.status <= 499) {
+            this.toastr.error(err.error.message, err.error.title);
+          }
+
+          return of(err);
+        })
+      );
+  }
+
+  buscarTarefas() {
+    const token = this.localStorage.get("token");
+    return this.httpClient.get<Tarefa[]>("http://localhost:3000/to-do", {
+      headers: {
+        "x-api-key": token,
+      },
+    });
+  }
+
+  toggleTarefa(id: string, status: boolean) {
+    const token = this.localStorage.get("token");
+    return this.httpClient.patch(
+      `http://localhost:3000/to-do/${id}`,
+      {
+        status,
+      },
+      {
+        headers: {
+          "x-api-key": token,
+        },
+      }
+    );
+  }
+}
+----
+
+<1> Estamos dizendo para o Angular **injetar** todos os serviços necessários para o nosso Service.
+
+<2> Estamos definindo um `pipe` para manusearmos o nosso   `Observable`, podemos adicionar operadores do `rxjs`. 
+
+<3> Estamos utilizando o operador `catchError` para caso haja algum erro ele trate ele pra gente.
+
+== to-do html
+
+[source,html]
+.to-do.component.html
+----
+<!-- form -->
+<div class="to-do-container">
+    <form [formGroup]="tarefaForm" class="form" (ngSubmit)="onSubmit()">
+        <label for="title">Título</label>
+        <input id="title" type="text" formControlName="title">
+        <button class="button">Adicionar tarefa</button>
+    </form>
+</div>
+
+<!-- lista -->
+@for (tarefa of tarefas; track tarefa.id) {
+<div style="border: 1px solid black;">
+    <p>{{ tarefa.title}}: completed {{tarefa.completed}}</p>
+    <button class="button" (click)="toggleTarefa(tarefa.id)">Mudar status</button>
+</div>
+}
+----
+
+== to-do ts
+
+[source,ts]
+----
+import { Component, OnInit } from "@angular/core";
+import { FormControl, FormGroup, ReactiveFormsModule } from "@angular/forms";
+import { ToDoService } from "./to-do.service";
+
+@Component({
+  selector: "app-to-do",
+  standalone: true,
+  imports: [ReactiveFormsModule],
+  templateUrl: "./to-do.component.html",
+  styleUrl: "./to-do.component.scss",
+})
+export class ToDoComponent implements OnInit {
+  constructor(private readonly toDoService: ToDoService) {}
+
+  tarefaForm: FormGroup = new FormGroup({
+    title: new FormControl(""),
+  });
+
+  tarefas: Tarefa[] = [];
+
+  ngOnInit(): void {
+    this.toDoService.buscarTarefas().subscribe((response: Tarefa[]) => {
+      this.tarefas = response;
+    });
+  }
+
+  toggleTarefa(id: string) {
+
+    const tarefa = this.tarefas.find((elemento) => elemento.id == id);
+
+    if (!tarefa) {
+      return;
+    }
+
+    this.toDoService
+      .toggleTarefa(tarefa.id, !tarefa.completed)
+      .subscribe((response) => {
+        // this.tarefas[index] = response as Tarefa;
+        tarefa.completed = !tarefa.completed;
+      });
+  }
+
+  onSubmit() {
+    this.toDoService
+      .criarTarefa(this.tarefaForm.value)
+      .subscribe((response) => {
+        this.tarefas.push(response as Tarefa);
+      });
+  }
+}
+
+export interface Tarefa {
+  id: string;
+  title: string;
+  completed: boolean;
+}
+----
